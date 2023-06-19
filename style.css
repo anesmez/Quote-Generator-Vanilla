@@ -10,22 +10,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: row;
-}
-
-.fav-list {
-  font-family: 'OPTIAlternateGothic' ;
-  font-weight: 500;
-  font-size: 2rem;
-  min-height: 100vh;
-  position: absolute;
-  background-color: #BAE6E7;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
-  text-align: center;
-  justify-content: flex-start;
 }
 
 .container {
@@ -33,7 +18,7 @@ body {
   font-weight: 500;
   font-size: 7rem;
   width: 50%;
-  min-height: 100vh;
+  min-height: 85vh;
   background-color: #BAE6E7;
   display: flex;
   justify-content: center;
@@ -51,6 +36,7 @@ body {
 .author {
   font-weight: 500;
   font-size: 3rem;
+  font-style: italic;
 }
 
 .fav-btn {
@@ -97,4 +83,66 @@ body {
 
 .new-btn:active {
   transform: scale(0.9);
+}
+
+.fav-list {
+  font-family: 'OPTIAlternateGothic' ;
+  font-weight: 500;
+  font-size: 2rem;
+  background-color: #BAE6E7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  justify-content: flex-start;
+  list-style: none;
+  
+}
+
+.fav-list li {
+  border : 1px solid #fff;
+  font-weight: 500;
+  border-radius: 10px;
+  font-size: 2rem;
+  padding: 10px;
+}
+
+.fav-list li:hover {
+  background-color: #fff;
+  color: #BAE6E7;
+}
+
+.fav-list li:active {
+  transform: scale(0.9);
+}
+
+.fav-quote {
+  font-weight: 500;
+  font-size: 2rem; 
+}
+
+.fav-author {
+  font-weight: 500;
+  font-size: 1rem;
+  font-style: italic;
+}
+
+.unfav-btn {
+  font-family: 'OPTIAlternateGothic' ;
+  font-weight: 500;
+  font-size: 2rem;
+  background-color: #BAE6E7;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 1rem 2rem;
+  border-radius: 5px;
+  transition: all 0.3s ease-in-out;
+}
+
+hr {
+  width: 75%;
+  margin: 2rem 0;
+  border: 1px solid #fff;
 }

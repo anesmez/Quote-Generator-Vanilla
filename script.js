@@ -37,5 +37,19 @@ const addFav = () => {
     alert('Quote added to favourites');
 }
 
+const showFav = () => {
+    let quotes = localStorage.getItem('quotes');
+    if (quotes == null) {
+        quotes = [];
+    } else {
+        quotes = JSON.parse(quotes);
+    }
+    quotes.forEach((quote) => {
+        const li = document.createElement('li');
+        li.innerHTML = quote.quote + ' ' + quote.author;
+        container.appendChild(li);
+    })
+}
+
 addFavBtn.addEventListener('click', addFav);
 addQuoteBtn.addEventListener('click', getQuote);
