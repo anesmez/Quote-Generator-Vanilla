@@ -5,6 +5,7 @@ const AuthorDisplay = document.getElementsByClassName('author')[0];
 const container = document.getElementsByClassName('container')[0];
 const addQuoteBtn = document.getElementsByClassName('new-btn')[0];
 const addFavBtn = document.getElementsByClassName('fav-btn')[0];
+const copyBtn = document.getElementsByClassName('cpy-btn')[0];
 
 
 const getQuote = async () => {
@@ -19,37 +20,44 @@ const quoteInsert = (quote, author) => {
     AuthorDisplay.innerHTML = '~' + author;
 }
 
-const addFav = () => {
-    const quote = quoteDisplay.innerHTML;
-    const author = AuthorDisplay.innerHTML;
-    const quoteObj = {
-        quote,
-        author
-    }
-    let quotes = localStorage.getItem('quotes');
-    if (quotes == null) {
-        quotes = [];
-    } else {
-        quotes = JSON.parse(quotes);
-    }
-    quotes.push(quoteObj);
-    localStorage.setItem('quotes', JSON.stringify(quotes));
-    alert('Quote added to favourites');
+const copyQuote = () => {
+    const textToCopy = quoteDisplay.innerHTML + ' ' + AuthorDisplay.innerHTML;
+    navigator.clipboard.writeText(textToCopy);
+    alert('Quote copied to clipboard');
 }
 
-const showFav = () => {
-    let quotes = localStorage.getItem('quotes');
-    if (quotes == null) {
-        quotes = [];
-    } else {
-        quotes = JSON.parse(quotes);
-    }
-    quotes.forEach((quote) => {
-        const li = document.createElement('li');
-        li.innerHTML = quote.quote + ' ' + quote.author;
-        container.appendChild(li);
-    })
+copyBtn.addEventListener('click', copyQuote);
+
+const unfavBtn = document.getElementsByClassName('unfav-btn');
+
+const addToFav = () => {
+    const listItem = document.createElement('li');
+
+    const favQuote = document.createElement('div');
+    favQuote.classList.add('fav-quote');
+    favQuote.innerText = quoteDisplay.innerText;
+
+    const favAuthor = document.createElement('div');
+    favAuthor.classList.add('fav-author');
+    favAuthor.innerText = '~' + AuthorDisplay.innerText;
+
+    const unfavBtn = document.createElement('button');
+    unfavBtn.classList.add('unfav-btn');
+    unfavBtn.innerHTML = '<i class="fa-solid fa-trash icon"></i> Remove';
+
+    unfavBtn.addEventListener('click', () => {
+        listItem.remove();
+    });
+
+    listItem.appendChild(favQuote);
+    listItem.appendChild(favAuthor);
+    listItem.appendChild(unfavBtn);
+
+    const favList = document.getElementsByClassName('fav-list')[0];
+
+    favList.appendChild(listItem);
+
 }
 
-addFavBtn.addEventListener('click', addFav);
+addFavBtn.addEventListener('click', addToFav);
 addQuoteBtn.addEventListener('click', getQuote);
