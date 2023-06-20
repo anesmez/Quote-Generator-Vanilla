@@ -1,5 +1,3 @@
-// here we will fetch the quote from the quote api
-
 const quoteDisplay = document.getElementsByClassName('quote')[0];
 const AuthorDisplay = document.getElementsByClassName('author')[0];
 const container = document.getElementsByClassName('container')[0];
@@ -8,6 +6,7 @@ const addFavBtn = document.getElementsByClassName('fav-btn')[0];
 const copyBtn = document.getElementsByClassName('cpy-btn')[0];
 
 
+// fetch the quote from the api
 const getQuote = async () => {
     const response = await fetch('https://api.quotable.io/random');
     const data = await response.json();
@@ -15,11 +14,13 @@ const getQuote = async () => {
     quoteInsert(data.content, data.author);
 }
 
+// insert the quote into the html
 const quoteInsert = (quote, author) => {
     quoteDisplay.innerHTML = quote;
     AuthorDisplay.innerHTML = '~' + author;
 }
 
+// copy the quote to clipboard
 const copyQuote = () => {
     const textToCopy = quoteDisplay.innerHTML + ' ' + AuthorDisplay.innerHTML;
     navigator.clipboard.writeText(textToCopy);
@@ -30,6 +31,8 @@ copyBtn.addEventListener('click', copyQuote);
 
 const unfavBtn = document.getElementsByClassName('unfav-btn');
 
+
+// create the element and add it to the fav list
 const addToFav = () => {
     const listItem = document.createElement('li');
 
